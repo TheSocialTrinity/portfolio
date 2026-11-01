@@ -4,13 +4,50 @@ import React, { useState } from 'react';
 
 export default function ContactForm() {
   const [status, setStatus] = useState<string>('');
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    const name = fd.get('name') as string;
-    setStatus(`Thanks${name ? ', ' + name : ''} — your note is on its way.`);
-    e.currentTarget.reset();
+    setIsSubmitting(true);
+    setStatus('Sending your inquiry...');
+
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const name = (fd.get('name') as string) || '';
+    const email = (fd.get('email') as string) || '';
+    const message = (fd.get('message') as string) || '';
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/socialtrinityofficial@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          message: message,
+          _subject: `New Strategy Inquiry from ${name || 'Website Visitor'}`,
+          _template: 'table'
+        })
+      });
+
+      if (response.ok) {
+        setStatus(`Thanks${name ? ', ' + name : ''} — your inquiry has been sent to our team!`);
+        form.reset();
+      } else {
+        // Fallback: trigger mailto so inquiry is never lost
+        window.location.href = `mailto:socialtrinityofficial@gmail.com?subject=${encodeURIComponent('Strategy Inquiry from ' + name)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message)}`;
+        setStatus(`Thanks${name ? ', ' + name : ''} — your note is on its way.`);
+      }
+    } catch {
+      // Fallback
+      window.location.href = `mailto:socialtrinityofficial@gmail.com?subject=${encodeURIComponent('Strategy Inquiry from ' + name)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message)}`;
+      setStatus(`Thanks${name ? ', ' + name : ''} — your note is on its way.`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -27,7 +64,9 @@ export default function ContactForm() {
           <p>Bring us your audience, your stuck point, or your next big idea. We’ll show you where the next move is.</p>
           <div className="contact-direct">
             <span>Or drop us a line</span>
-            <a href="mailto:hello@socialtrinity.co">hello@socialtrinity.co <span>↗</span></a>
+            <a href="mailto:socialtrinityofficial@gmail.com">
+              socialtrinityofficial@gmail.com <span>↗</span>
+            </a>
           </div>
         </div>
         <form className="contact-form" id="consultation-form" onSubmit={handleSubmit}>
@@ -43,10 +82,14 @@ export default function ContactForm() {
             What’s on your mind?
             <textarea name="message" rows={3} placeholder="A new brand, a brave pivot, a big idea…" required></textarea>
           </label>
-          <button className="button button-light" type="submit">
-            Book a call <span>↗</span>
+          <button className="button button-light" type="submit" disabled={isSubmitting}>
+            {isSubmitting ? 'Sending...' : 'Book a call'} <span>↗</span>
           </button>
-          <p className="form-status" id="form-status" role="status" aria-live="polite">{status}</p>
+          {status && (
+            <p className="form-status" id="form-status" role="status" aria-live="polite">
+              {status}
+            </p>
+          )}
         </form>
       </div>
     </section>
