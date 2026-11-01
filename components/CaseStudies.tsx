@@ -9,107 +9,71 @@ interface CaseStudiesProps {
 export default function CaseStudies({ onOpenCase }: CaseStudiesProps) {
   return (
     <section className="portfolio-preview section-pad" id="work" aria-labelledby="portfolio-title">
-      <div className="section-kicker kicker-inverse reveal">
+      <div className="section-kicker reveal">
         <span>02</span>
         <span>Portfolio</span>
+        <span className="kicker-rule"></span>
       </div>
       <div className="portfolio-heading reveal">
         <h2 id="portfolio-title">Case study</h2>
         <p>A few good ones, made memorable.</p>
       </div>
-
-      <div className="work-grid">
-        {/* Card 1: Jerry Wise */}
-        <article className="work-card work-card-case-study reveal" data-card="jerry-wise">
-          <div className="case-thumb-box case-thumb-jerry-wise">
-            <img src="/case-studies/jerry-wise/jerry-wise-thumb.png" alt="Jerry Wise Case Study Preview" className="case-thumb-img" />
+      <div className="portfolio-grid">
+        {/* Jerry Wise */}
+        <article className="portfolio-card portfolio-card-jerry reveal">
+          <div className="portfolio-visual">
+            <span>JERRY<br /><em>WISE</em></span>
+            <small>YouTube + Retention + Funnel</small>
           </div>
-          <div className="work-card-content">
-            <span className="case-badge">Jerry Wise / 2025–2026</span>
-            <h3>From reach to retention, <em>rebuilt in 20 months.</em></h3>
-            <div className="case-stat-row">
-              <div className="case-stat">
-                <strong>9.3%</strong>
-                <small>Regular Viewers</small>
-              </div>
-              <div className="case-stat">
-                <strong>$821K</strong>
-                <small>Revenue</small>
-              </div>
-              <div className="case-stat">
-                <strong>28.3M</strong>
-                <small>Views</small>
-              </div>
-            </div>
-            <button
-              type="button"
-              className="text-link case-study-trigger"
-              onClick={() => onOpenCase('jerry-wise')}
-            >
+          <div className="portfolio-card-copy">
+            <p>Jerry Wise / 2025–2026</p>
+            <h3>From reach to retention,<br /><em>rebuilt in 20 months.</em></h3>
+            <dl className="card-stats">
+              <div><dt>Regular viewers</dt><dd>9.3%</dd></div>
+              <div><dt>Revenue</dt><dd>$821K</dd></div>
+              <div><dt>Views</dt><dd>28.3M</dd></div>
+            </dl>
+            <button className="case-trigger" type="button" onClick={() => onOpenCase('jerry-wise')}>
               View full case study <span>↗</span>
             </button>
           </div>
         </article>
 
-        {/* Card 2: Charlotte Hazelwood */}
-        <article className="work-card work-card-case-study reveal reveal-delay" data-card="charlotte-hazelwood">
-          <div className="case-thumb-box case-thumb-charlotte-hazelwood">
-            <img src="/case-studies/charlotte-hazelwood/charlotte-hazelwood-thumb.png" alt="Charlotte Hazelwood Case Study Preview" className="case-thumb-img" />
+        {/* Charlotte Hazelwood */}
+        <article className="portfolio-card portfolio-card-charlotte reveal reveal-delay">
+          <div className="portfolio-visual">
+            <span>CHARLOTTE<br /><em>HAZELWOOD</em></span>
+            <small>Social Growth + Funnel + Challenge</small>
           </div>
-          <div className="work-card-content">
-            <span className="case-badge">Charlotte Hazelwood / 2025–2026</span>
-            <h3>From 3.5M to 108M+ views <em>in 12 months.</em></h3>
-            <div className="case-stat-row">
-              <div className="case-stat">
-                <strong>108.2M</strong>
-                <small>Total Views</small>
-              </div>
-              <div className="case-stat">
-                <strong>59.9M</strong>
-                <small>Reach</small>
-              </div>
-              <div className="case-stat">
-                <strong>41.4K</strong>
-                <small>Hot Leads</small>
-              </div>
-            </div>
-            <button
-              type="button"
-              className="text-link case-study-trigger"
-              onClick={() => onOpenCase('charlotte-hazelwood')}
-            >
+          <div className="portfolio-card-copy">
+            <p>Charlotte Hazelwood / 2025–2026</p>
+            <h3>From 3.5M to 108M+ views<br /><em>in 12 months.</em></h3>
+            <dl className="card-stats">
+              <div><dt>Total views</dt><dd>108.2M</dd></div>
+              <div><dt>Reach</dt><dd>59.9M</dd></div>
+              <div><dt>Hot leads</dt><dd>41.4K</dd></div>
+            </dl>
+            <button className="case-trigger" type="button" onClick={() => onOpenCase('charlotte-hazelwood')}>
               View full case study <span>↗</span>
             </button>
           </div>
         </article>
 
-        {/* Card 3: Crypto Archie */}
-        <article className="work-card work-card-case-study reveal reveal-delay-two" data-card="crypto-archie">
-          <div className="case-thumb-box case-thumb-crypto-archie">
-            <img src="/case-studies/crypto-archie/crypto-archie-thumb.png" alt="Crypto Archie Case Study Preview" className="case-thumb-img" />
+        {/* Crypto Archie */}
+        <article className="portfolio-card portfolio-card-archie reveal reveal-delay-two">
+          <div className="portfolio-visual">
+            <span>CRYPTO<br /><em>ARCHIE</em></span>
+            <small>Content + Retention + Measurement</small>
           </div>
-          <div className="work-card-content">
-            <span className="case-badge">Crypto Archie / 2026</span>
-            <h3>A business rebuilt <em>in five months.</em></h3>
-            <div className="case-stat-row">
-              <div className="case-stat">
-                <strong>+103.6%</strong>
-                <small>Recurring Rev</small>
-              </div>
-              <div className="case-stat">
-                <strong>-59.9%</strong>
-                <small>Monthly Churn</small>
-              </div>
-              <div className="case-stat">
-                <strong>+1,835</strong>
-                <small>Net Subs</small>
-              </div>
-            </div>
-            <button
-              type="button"
-              className="text-link case-study-trigger"
-              onClick={() => onOpenCase('crypto-archie')}
-            >
+          <div className="portfolio-card-copy">
+            <p>Crypto Archie / 2026</p>
+            <h3>A business rebuilt<br /><em>in five months.</em></h3>
+            <dl className="card-stats">
+              <div><dt>Recurring rev</dt><dd>+103.6%</dd></div>
+              <div><dt>Monthly churn</dt><dd>-59.9%</dd></div>
+              <div><dt>Net subs</dt><dd>+1,835</dd></div>
+            </dl>
+            <button className="case-trigger" type="button" onClick={() => onOpenCase('crypto-archie')}>
               View full case study <span>↗</span>
             </button>
           </div>

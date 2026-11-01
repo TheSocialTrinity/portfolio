@@ -34,7 +34,16 @@ export default function Home() {
         { threshold: 0.05, rootMargin: '50px' }
       );
       reveals.forEach((el) => observer.observe(el));
-      return () => observer.disconnect();
+
+      // Fallback to guarantee visibility across all viewports
+      const timer = setTimeout(() => {
+        reveals.forEach((el) => el.classList.add('visible'));
+      }, 300);
+
+      return () => {
+        clearTimeout(timer);
+        observer.disconnect();
+      };
     } else {
       reveals.forEach((el) => el.classList.add('visible'));
     }

@@ -2,15 +2,14 @@
 
 import React from 'react';
 
-const servicesList = [
+export const servicesList = [
   { number: "01", title: "Organic growth", description: "A content rhythm and point of view that earns attention without paying for every impression." },
   { number: "02", title: "Content strategy", description: "The themes, formats, and ideas that keep your audience coming back." },
   { number: "03", title: "Social media management", description: "Always-on publishing, community care, and a feed that sounds like you." },
   { number: "04", title: "Copywriting", description: "Words that make the value clear, the voice memorable, and the next step easy." },
-  { number: "05", title: "Website & landing pages", description: "High-clarity pages that turn a curious visit into a meaningful action." },
-  { number: "06", title: "Community engagement", description: "Replies, conversations, and small moments that turn followers into regulars." },
-  { number: "07", title: "Branding & positioning", description: "A sharper place in the market and a brand people can recognize in a second." },
-  { number: "08", title: "Analytics & reporting", description: "Useful numbers, honest readouts, and a plan for what to do next." }
+  { number: "05", title: "Community engagement", description: "Replies, conversations, and small moments that turn followers into regulars." },
+  { number: "06", title: "Branding & positioning", description: "A sharper place in the market and a brand people can recognize in a second." },
+  { number: "07", title: "Analytics & reporting", description: "Useful numbers, honest readouts, and a plan for what to do next." }
 ];
 
 interface ServicesProps {
@@ -23,18 +22,17 @@ export default function Services({ onSelectService }: ServicesProps) {
       <div className="section-kicker reveal">
         <span>07</span>
         <span>Our offerings</span>
+        <span className="kicker-rule"></span>
       </div>
-      <div className="services-heading reveal">
-        <h2 id="services-title">
-          What we<br /><em>offer.</em>
-        </h2>
+      <div className="section-heading-row reveal">
+        <h2 id="services-title">What we<br /><em>offer.</em></h2>
         <p>Strategy, content, and the systems that turn attention into a brand people want to stay close to.</p>
       </div>
       <div className="services-grid" id="services-grid">
         {servicesList.map((s) => (
           <article
-            key={s.number}
             className="service-card reveal"
+            key={s.number}
             tabIndex={0}
             role="button"
             aria-label={`${s.title} details`}

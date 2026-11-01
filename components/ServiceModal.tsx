@@ -48,17 +48,6 @@ export const serviceDetailsData: Record<string, { title: string; summary: string
     ]
   },
   "05": {
-    title: "Website & Landing Pages",
-    summary: "Bespoke, high-clarity digital homes and funnels engineered to convert curious clicks into paying clients and community members.",
-    inclusions: [
-      "Conversion-optimized landing pages and challenge launch hubs",
-      "Interactive lead-capture quiz funnels with personalized report cards",
-      "Modern editorial UI/UX design matching your unique visual identity",
-      "Flawless mobile speed, typography, and responsive performance",
-      "Seamless integration with CRM, email marketing, and payment processors"
-    ]
-  },
-  "06": {
     title: "Community Engagement",
     summary: "Automated direct-message funnels and personalized touchpoints that turn comments into genuine conversations and paying leads.",
     inclusions: [
@@ -69,7 +58,7 @@ export const serviceDetailsData: Record<string, { title: string; summary: string
       "Real-time signal tracking to identify high-intent buyer inquiries"
     ]
   },
-  "07": {
+  "06": {
     title: "Branding & Positioning",
     summary: "A distinctive market position and commanding visual language that makes your brand immediately recognizable and impossible to ignore.",
     inclusions: [
@@ -80,7 +69,7 @@ export const serviceDetailsData: Record<string, { title: string; summary: string
       "Seamless brand expansion strategy for creators pivoting into new horizons"
     ]
   },
-  "08": {
+  "07": {
     title: "Analytics & Reporting",
     summary: "Crystal-clear attribution, retention diagnostics, and actionable insights so every decision is backed by revenue, not vanity metrics.",
     inclusions: [
@@ -104,28 +93,70 @@ export default function ServiceModal({ serviceId, onClose }: ServiceModalProps) 
   if (!data) return null;
 
   return (
-    <div className="service-modal-backdrop" onClick={onClose}>
-      <div className="service-modal-panel" onClick={(e) => e.stopPropagation()}>
+    <div
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 1000,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'rgba(13, 13, 13, 0.78)',
+        backdropFilter: 'blur(10px)',
+        padding: '20px'
+      }}
+      onClick={onClose}
+    >
+      <div
+        className="service-modal-panel"
+        style={{
+          background: 'var(--paper)',
+          maxWidth: '580px',
+          width: '100%',
+          padding: '42px 38px',
+          borderRadius: '2px',
+          boxShadow: '0 24px 60px rgba(0,0,0,0.3)',
+          position: 'relative'
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           type="button"
           className="service-modal-close"
           aria-label="Close service modal"
+          style={{
+            position: 'absolute',
+            top: '20px',
+            right: '20px',
+            border: '1px solid var(--line)',
+            background: 'transparent',
+            borderRadius: '50%',
+            width: '32px',
+            height: '32px',
+            cursor: 'pointer',
+            fontSize: '18px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
           onClick={onClose}
         >
           ×
         </button>
-        <span className="service-modal-num">{serviceId}</span>
-        <h3 className="service-modal-title">{data.title}</h3>
-        <p className="service-modal-lead">{data.summary}</p>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '11px', color: 'var(--terracotta)', fontWeight: 600 }}>{serviceId}</span>
+        <h3 style={{ fontSize: '32px', margin: '12px 0', letterSpacing: '-0.04em' }}>{data.title}</h3>
+        <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#433f3b', margin: '0 0 24px' }}>{data.summary}</p>
         <div className="service-modal-scope">
-          <h4>What this service includes:</h4>
+          <h4 style={{ font: '600 11px var(--mono)', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--terracotta)', marginBottom: '14px' }}>
+            What this service includes:
+          </h4>
           <ul>
             {data.inclusions.map((inc, i) => (
               <li key={i}>{inc}</li>
             ))}
           </ul>
         </div>
-        <div className="service-modal-cta">
+        <div className="service-modal-cta" style={{ marginTop: '32px' }}>
           <a href="#contact" className="button button-primary" onClick={onClose}>
             Discuss this service <span>↗</span>
           </a>

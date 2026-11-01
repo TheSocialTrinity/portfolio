@@ -1,46 +1,32 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 
 const clients = ["Charlotte", "Jerry Wise", "Crypto Archie", "Jordan Platten", "Mace"];
+// Repeat 4 times for smooth continuous CSS marquee scroll
+const track = [...clients, ...clients, ...clients, ...clients];
 
 export default function ClientMarquee() {
-  const [offset, setOffset] = useState(0);
-
-  const prev = () => setOffset((offset - 1 + clients.length) % clients.length);
-  const next = () => setOffset((offset + 1) % clients.length);
-
-  const displayList = [...clients.slice(offset), ...clients.slice(0, offset), ...clients.slice(offset), ...clients.slice(0, offset)];
-
   return (
     <section className="clients client-marquee section-pad" aria-labelledby="clients-title">
       <div className="section-kicker reveal">
         <span>03</span>
         <span>In good company</span>
+        <span className="kicker-rule"></span>
       </div>
       <div className="clients-heading reveal">
-        <div>
-          <h2 id="clients-title">Clients we have<br /><em>worked with.</em></h2>
-        </div>
+        <h2 id="clients-title">Clients we have<br /><em>worked with.</em></h2>
         <p>Names, launches, and communities we’ve helped move forward.</p>
       </div>
-
-      <div className="client-carousel-wrap reveal">
-        <div className="client-carousel" id="logo-carousel" aria-label="Clients list">
-          {displayList.map((name, i) => (
+      <div className="logo-marquee" aria-label="Clients we have worked with">
+        <div className="logo-marquee-track" id="logo-carousel">
+          {track.map((name, i) => (
             <div className="logo-card" key={i}>
               <span>{name}</span>
             </div>
           ))}
         </div>
-        <div className="carousel-controls" aria-label="Client carousel controls">
-          <button type="button" aria-label="Previous clients" onClick={prev}>←</button>
-          <button type="button" aria-label="Next clients" onClick={next}>→</button>
-        </div>
       </div>
-
-      <p className="clients-note reveal">
-        <span className="asterisk">✹</span> Selected collaborators, 2016–2026
+      <p className="carousel-note">
+        <span className="pulse-dot"></span> Selected collaborators, 2016—2026
       </p>
     </section>
   );
